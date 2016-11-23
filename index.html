@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <title>流量排序</title>
+    <style>
+      * {margin:0;padding:0;}
+      div {margin:20px;}
+    </style> 
+  </head>
+  <body>
+    <div>排序前：</div>
+    <div id="a"></div>
+    <div>排序后：</div>
+    <div id="b"></div>
+  <script type="text/javascript">
+    
+    function flowBySort(paramArray){
+	var mArray = [];
+	var gArray = [];
+
+	for(var item in paramArray){
+		if(paramArray[item].charAt(paramArray[item].length-1).toLowerCase() == 'm'){
+			mArray.push(paramArray[item]);
+		}
+		if(paramArray[item].charAt(paramArray[item].length-1).toLowerCase() == 'g'){
+			gArray.push(paramArray[item]);
+		}
+	}
+	mArray.sort(function(a,b){
+		return a.substr(0,a.length-1)-b.substr(0,b.length-1);
+	});
+	gArray.sort(function(a,b){
+		return a.substr(0,a.length-1)-b.substr(0,b.length-1);	
+	});
+	
+	return mArray.concat(gArray);
+    }
+
+    //使用示例
+    var a = ['5G','3G','50M','100m','1g','300m','100m','200M','700m','2000M','2g'];
+    document.getElementById('a').innerHTML = a.toString();
+
+    var b = flowBySort(a);
+    document.getElementById('b').innerHTML = b.toString();
+  </script>
+  </body>
+</html>
